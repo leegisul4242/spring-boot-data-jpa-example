@@ -11,7 +11,7 @@ import java.util.List;
 @RequestMapping("/api")
 public class UserController {
 
-    @Autowired
+    @Autowired //
     private UserRepository userRepository;
 
 
@@ -28,7 +28,8 @@ public class UserController {
         return userRepository.findAll();
     }
 
-
+    //PathVariable은 뭐지?
+    //쿼리스트링 하는 것 같긴한데
     @PutMapping("/users/{user_id}")
     public User update(@PathVariable("user_id") Long userId, @RequestBody User userObject)
     {
@@ -55,4 +56,10 @@ public class UserController {
     {
         return userRepository.findOne(userId);
     }
+    //메서드 반환타입이 User.
+    // 객체변수명.findOne(userId); 하면 user이 나온단거고
+    // 따라서, User == "행"레코드
+    // User == boardVO 같은거
+    // 근데, boardVO는 테이블명이 tbl_review(userId, title, content, sysDate, editDate) 이런거였는데ㅡ
+    // 객체명 User로 하면 (자동) 테이블명 User 되는 것같음. -- 안헷갈리나?
 }
